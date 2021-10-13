@@ -11,8 +11,9 @@ using UnityEngine;
         public float verticaldirection;
         public float Speed = 10;
         public BoxCollider2D _collider;
+    private Vector2 _InitialPosition;
 
-        private void Start()
+    private void Start()
         {
             if (_rigidbody == false)
             {
@@ -23,6 +24,8 @@ using UnityEngine;
             {
                 _collider = GetComponent<BoxCollider2D>();
             }
+
+        _InitialPosition = transform.position;
         }
         private void Update()
         {
@@ -34,5 +37,9 @@ using UnityEngine;
             _rigidbody.position += new Vector2(0, verticaldirection) * (Speed * Time.fixedDeltaTime);
             
         }
+    public void ResetPosition()
+    {
+        _rigidbody.position = _InitialPosition;
+    }
     }
 

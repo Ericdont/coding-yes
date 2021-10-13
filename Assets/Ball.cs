@@ -11,6 +11,9 @@ public class Ball : MonoBehaviour
     private Vector2 _direction;
 
     [SerializeField]
+    private Vector2 _previousDirection;
+
+    [SerializeField]
     private Rigidbody2D _rigidbody;
 
     [SerializeField]
@@ -19,7 +22,17 @@ public class Ball : MonoBehaviour
     [SerializeField]
     private EventTrigger.TriggerEvent trigger;
 
+    
+
     private Vector3 OriginalPosition;
+
+    public void ResetPosition()
+    {
+        _previousDirection = _direction;
+
+
+    }
+
     private void Start()
     {
 
@@ -33,18 +46,9 @@ public class Ball : MonoBehaviour
         {
             _collider = GetComponent<CircleCollider2D>();
         }
-
-        float x = Random.Range(-1, 1);
-        float y = Random.Range(-0.5f, 0.5f);
-
-        _direction = Vector2.right;
-        _rigidbody.AddForce(SPEEED * _direction);
     }
-    public void ResetBall()
-    {
-
-    }
-
+    
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Wall"))
@@ -56,7 +60,35 @@ public class Ball : MonoBehaviour
 
         }
     }
+
+    public void AddForceInRandomDirection()
+    {
+        float x = Random.Range(-1, 1);
+        float y = Random.Range(-0.5f, 0.5f);
+
+        _direction = Vector2.right;
+        _rigidbody.AddForce(SPEEED * _direction);
+    }
 }
+   // public void AddForce()
+//    {
+   //     int x = Random.Range(-1, 1);
+     //   if (x == 0)
+       // {
+     //       x = 1;
+       // }
+
+//        float y = Random.Range(-0.5f 0.5);
+
+  //      if(x == _previousDirection.x)
+    //    {
+        //    x = -x;
+      //  }
+
+ //       _direction = new Vector2(x, y);
+  //      _rigidbody.AddForce(_direction * SPEEED);
+   // }
+// }
 
 
      
