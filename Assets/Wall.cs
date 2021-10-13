@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class Wall : MonoBehaviour
@@ -8,7 +9,8 @@ public class Wall : MonoBehaviour
     public BoxCollider2D Collider;
 
     [SerializeField]
-    private EventTrigger.TriggerEvent trigger;
+    private EventTrigger.TriggerEvent _goalEvent;
+   
 
 
     public bool IsTopWall;
@@ -31,8 +33,7 @@ public class Wall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            print("wall was hit.");
-            trigger.Invoke(null);
+            _goalEvent.Invoke(null);
         }
     }
 }
